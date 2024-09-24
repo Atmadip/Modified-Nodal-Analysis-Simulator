@@ -1,0 +1,25 @@
+       --- Operating Point ---
+
+V(n1):	 7	 voltage
+V(n2):	 6.6	 voltage
+V(n3):	 6.2	 voltage
+V(n4):	 5.8	 voltage
+V(n5):	 6.4	 voltage
+V(n6):	 7	 voltage
+V(n7):	 6	 voltage
+V(n8):	 5	 voltage
+V(n9):	 4	 voltage
+V(n10):	 3	 voltage
+I(I1):	 1	 device_current
+I(I2):	 1	 device_current
+I(R1):	 0.4	 device_current
+I(R2):	 0.4	 device_current
+I(R3):	 0.4	 device_current
+I(R4):	 -0.6	 device_current
+I(R5):	 -0.6	 device_current
+I(R6):	 1	 device_current
+I(R7):	 1	 device_current
+I(R8):	 1	 device_current
+I(R9):	 1	 device_current
+I(V1):	 -0.4	 device_current
+I(V2):	 -1.6	 device_current

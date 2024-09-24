@@ -1,0 +1,11 @@
+       --- Operating Point ---
+
+V(n1):	 4	 voltage
+V(n2):	 3	 voltage
+V(n3):	 2	 voltage
+V(n4):	 1	 voltage
+I(I1):	 1	 device_current
+I(R1):	 1	 device_current
+I(R2):	 1	 device_current
+I(R3):	 1	 device_current
+I(V1):	 -1	 device_current
