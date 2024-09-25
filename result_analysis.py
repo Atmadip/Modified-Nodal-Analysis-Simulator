@@ -64,7 +64,7 @@ def analysis(circuit_name):
     if file_found == 1:
         l_dict, m_dict = data_extract(ltspice_path, mnas_path)
         res, right_wrong_num = data_compare(l_dict, m_dict)
-    return res, right_wrong_num
+        return res, right_wrong_num
 
 
 if __name__ == '__main__':
