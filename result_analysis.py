@@ -67,16 +67,10 @@ def analysis(circuit_name):
     file_found, ltspice_path, mnas_path = file_finder(circuit)
     if file_found == 1:
         l_dict, m_dict = data_extract(ltspice_path, mnas_path)
-<<<<<<< HEAD
-        res, right_wrong_num = data_compare(l_dict, m_dict)
-        return res, right_wrong_num
-    return None, None
-=======
         _, right_wrong_num = data_compare(l_dict, m_dict)
         return right_wrong_num
     elif file_found == 0:
         return ltspice_path, mnas_path
->>>>>>> fa3124c844bffdf9994dc00a97517b0ebd3e32a2
 
 
 if __name__ == '__main__':
