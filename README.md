@@ -1,4 +1,17 @@
 # Modified Nodal Analysis Simulator
+
+This project aims to calculate the node voltages of a circuit spice netlist. 
+The simulator uses the Modified Nodal Analysis approach implmenting the Matrix 
+method of evaluation. The Gmatrix is an (n+m)x(n+m) matrix where n is the number
+of nodes and m is the number of independant voltage sources. The upper nxn part 
+of the matrix contains the equivalent conductance related to the 
+corresponding i^th and j^th node where i and j can be same or different. 
+The J_vector is a vector that has (n+m) elements where the n values represent the 
+current sources if connected to the respective node. The m represents the voltage 
+source values. 
+Together the form the equation: 
+         **_GV = J_**. The simulator performs nodal analysis and solves for the Vector V 
+which is the list of Nodes. 
 ## Folder Structure: ##
 1) **Ltspice_circuit_files:** Contains the .cir files of all the circuit design files simulated in the project.
 2) **Ltspice_simulation_result_files:** Contains all the results from the LTSpice simulation tool.
