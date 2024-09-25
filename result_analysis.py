@@ -15,8 +15,12 @@ def file_finder(circuit_name):
         complete_ltspice_path = path_to_ltspice_simulations + "\\" + ltspice_file
         complete_mnas_path = path_to_mnas_simulations + "\\" + mnas_file
         return 1, complete_ltspice_path, complete_mnas_path
+    elif len(ltspice_simulation_contents) == 1 and len(mnas_simulation_contents) == 0:
+        return 0, 0, -1
+    elif len(ltspice_simulation_contents) == 0 and len(mnas_simulation_contents) == 1:
+        return 0, -1, 0
     else:
-        return 0, None, None
+        return 0, 0, 0
 
 
 def data_extract(ltspice_fp, mnas_fp):
@@ -63,12 +67,22 @@ def analysis(circuit_name):
     file_found, ltspice_path, mnas_path = file_finder(circuit)
     if file_found == 1:
         l_dict, m_dict = data_extract(ltspice_path, mnas_path)
-        res, right_wrong_num = data_compare(l_dict, m_dict)
-        return res, right_wrong_num
+        _, right_wrong_num = data_compare(l_dict, m_dict)
+        return right_wrong_num
+    elif file_found == 0:
+        return ltspice_path, mnas_path
 
 
 if __name__ == '__main__':
-    circuit = "circuit8"
+    circuit = "circuit1"
     right_v_wrong_num = analysis(circuit)
-    print(f"There are {sum(right_v_wrong_num)} nodes in the design.")
-    print(f"Node-Voltage Comparison Result:\nCorrect:\t {right_v_wrong_num[0]}\nIncorrect:\t {right_v_wrong_num[1]}")
+    if sum(right_v_wrong_num) == 0:
+        print(f"The simulation results of the design {circuit} were not found")
+    elif sum(right_v_wrong_num) == -1:
+        if right_v_wrong_num[0] == -1:
+            print(f"Corresponding Ltspice simulation results for design {circuit} was not found.")
+        elif right_v_wrong_num[1] == -1:
+            print(f"Corresponding MNAS simulation results for design {circuit} was not found.")
+    else:
+        print(f"There are {sum(right_v_wrong_num)} nodes in the design.")
+        print(f"Node-Voltage Comparison Result:\nCorrect:\t {right_v_wrong_num[0]}\nIncorrect:\t {right_v_wrong_num[1]}")
