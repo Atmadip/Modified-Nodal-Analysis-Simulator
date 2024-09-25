@@ -68,6 +68,7 @@ def analysis(circuit_name):
 
 
 if __name__ == '__main__':
-    circuit = "circuit6"
-    node_voltage_compare, right_v_wrong_num = analysis(circuit)
-    print(right_v_wrong_num)
+    circuit = "circuit8"
+    right_v_wrong_num = analysis(circuit)
+    print(f"There are {sum(right_v_wrong_num)} nodes in the design.")
+    print(f"Node-Voltage Comparison Result:\nCorrect:\t {right_v_wrong_num[0]}\nIncorrect:\t {right_v_wrong_num[1]}")
