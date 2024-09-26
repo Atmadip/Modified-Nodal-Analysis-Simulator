@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import re
+import matplotlib.pyplot as plt
 
 
 def file_finder(circuit_name):
@@ -68,13 +69,35 @@ def analysis(circuit_name):
     if file_found == 1:
         l_dict, m_dict = data_extract(ltspice_path, mnas_path)
         _, right_wrong_num = data_compare(l_dict, m_dict)
+        scat_plot(l_dict, m_dict)
         return right_wrong_num
     elif file_found == 0:
         return ltspice_path, mnas_path
 
 
+def scat_plot(spice_dict, mnas_dict):
+    x = list(spice_dict.keys())
+    l_spice_data = []
+    mnas_data = []
+
+    for i in x:
+        l_spice_data.append(spice_dict[i])
+        mnas_data.append(mnas_dict[i])
+    plt.ylim(0.999*min(l_spice_data), 1.001*max(l_spice_data))
+    plt.xlim(0.999*min(l_spice_data), 1.001*max(l_spice_data))
+    colors = ['blue' if a == b else 'red' for a, b in zip(l_spice_data, mnas_data)]
+    # symbol = ['o' if a == b else 'x' for a, b in zip(l_spice_data, mnas_data)]
+    plt.xlabel('LTSpice Values')
+    plt.ylabel('MNAS Values')
+    plt.scatter(l_spice_data, mnas_data, c=colors, marker='x', s=20)
+    plt.show()
+
+
+
+
+
 if __name__ == '__main__':
-    circuit = "circuit1"
+    circuit = "circuit8"
     right_v_wrong_num = analysis(circuit)
     if sum(right_v_wrong_num) == 0:
         print(f"The simulation results of the design {circuit} were not found")
@@ -86,3 +109,7 @@ if __name__ == '__main__':
     else:
         print(f"There are {sum(right_v_wrong_num)} nodes in the design.")
         print(f"Node-Voltage Comparison Result:\nCorrect:\t {right_v_wrong_num[0]}\nIncorrect:\t {right_v_wrong_num[1]}")
+
+
+
+
