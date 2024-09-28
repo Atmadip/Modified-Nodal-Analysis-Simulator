@@ -57,12 +57,14 @@ class MNA_solver:
         data = []
 
         node_index_data = self.node_index_gen()
-        # calculating the diagonal values
+
+        # Calculating the diagonal values for conductance of respective nodes
         for i in range(len(self.node_list)):
             rows.append(i)
             cols.append(i)
             data.append(self.element_eval(self.resistance_dict[self.node_list[i]]))
 
+        # Calculating Other entries for conductance of respective nodes
         for i in range(len(self.node_list)):
             n = self.node_to_node_connection[self.node_list[i]]
             for j in range(len(n["node"])):
@@ -71,7 +73,9 @@ class MNA_solver:
                 data.append(-np.reciprocal(float(n["edge"][j])))
 
         for i in range(len(self.voltage_list)):
+
             index = node_index_data[self.voltage_dict[self.voltage_list[i]]["pos_node"]]
+
             # voltage node values for the columns
             rows.append(index)
             cols.append(len(self.node_list) + i)
@@ -132,7 +136,7 @@ if __name__ == '__main__':
     complete_destination_path = current_directory_path + output_folder
     # print(complete_destination_path)
 
-    filename = "circuit8.sp"
+    filename = "circuit11.sp"
     my_file = open(complete_source_path+filename, 'r')
     # print(my_file)
 

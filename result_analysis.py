@@ -97,7 +97,7 @@ def scat_plot(spice_dict, mnas_dict):
 
 
 if __name__ == '__main__':
-    circuit = "circuit8"
+    circuit = "circuit11"
     right_v_wrong_num = analysis(circuit)
     if sum(right_v_wrong_num) == 0:
         print(f"The simulation results of the design {circuit} were not found")
